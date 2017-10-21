@@ -1,0 +1,18 @@
+<h1>Listagem de Categorias</h1>
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Descrição</th>
+        <th>Habilitado</th>
+        <th>Alterar</th>
+        <th>Excluir</th>
+    </tr>
+    <tr *ngFor="let categoria of listaCategorias; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{categoria.descricao}}</td>
+        <td>{{categoria.desabilitado}}</td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
