@@ -1,0 +1,21 @@
+<h1>Cadastro de Categoria</h1>
+
+<div class="container">
+    <form [formGroup]="meuForm" (submit)="cadastrar($event)" class="row">
+
+        <label>Descrição</label>
+        <input name="descricao" formControlName="descricao" [(ngModel)]="categoria.descricao" class="form-control" autocomplete="off">
+
+        <div *ngIf="!meuForm.controls.descricao.valid">
+            <span *ngIf="meuForm.controls.descricao.errors.required" class="form-control alert-danger">
+                Descrição é obrigatória
+            </span>
+        </div>
+
+
+        <botao nome="Salvar" tipo="submit" estilo="btn-primary" [desabilitado]="!meuForm.valid">
+        </botao>
+        <a [routerLink]="['/categoria']" class="btn btn-primary">Voltar</a>
+    </form>
+
+</div>

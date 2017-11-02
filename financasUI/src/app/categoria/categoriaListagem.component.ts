@@ -20,8 +20,8 @@ export class CategoriaListagemComponent{
 
         this.categoriaService.listar().subscribe(
             (listaCategorias) => {
-                this.listaCategorias = listaCategorias;
                 console.log(listaCategorias);
+                this.listaCategorias = listaCategorias;
             },
             error => console.log(error)
         );

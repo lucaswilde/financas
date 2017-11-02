@@ -3,18 +3,21 @@ import { NgModule } from '@angular/core';
 
 import { HttpModule } from '@angular/http';
 import 'rxjs/add/operator/map'; // usa do NgModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routes';
 import { CategoriaListagemComponent } from './categoria/categoriaListagem.component';
+import { CategoriaCadastroComponent } from './categoria/categoriaCadastro.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { BotaoModule } from './botao/botao.module';
 
 @NgModule({
   // Todos os componentes que fizerem parte do módulo, precisam ser registrados em declarations. 
   // quando o módulo da aplicação for carregado, precisamos indicar qual será o primeiro componente carregado, 
   // nesse caso queremos que seja o AppComponent tanto para o declaration quanto o bootstrap
   declarations: [
-    AppComponent, CategoriaListagemComponent, WelcomeComponent
+    AppComponent, CategoriaListagemComponent, CategoriaCadastroComponent, WelcomeComponent
   ],
   /*Veja que nossa classe AppModule possui o decorator NgModule e que neste decorator importarmos o BrowserModule, 
     através da propriedade imports. Isso indica que um módulo anotado com ngModule pode importar outros módulos também anotados com ngModule. 
@@ -25,6 +28,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
     BrowserModule
     , HttpModule
     , routing
+    , FormsModule
+    , ReactiveFormsModule
+    , BotaoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
