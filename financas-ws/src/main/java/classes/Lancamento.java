@@ -21,8 +21,8 @@ public class Lancamento implements Cloneable{
 	
 	@Id
 	@Column(name = "cod_lancamento", nullable = false)
-	@SequenceGenerator(name = "seq", sequenceName = "seq_lancamento", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+	@SequenceGenerator(name = "seq1", sequenceName = "seq_lancamento", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq1")
 	private Integer codLancamento;
 	
 	@Column(name = "valor", nullable = false)

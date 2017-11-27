@@ -9,16 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
 @Table(name = "categoria")
+@XmlRootElement
 public class Categoria implements Serializable{
 	
+	private static final long serialVersionUID = -4016729271019537375L;
+
 	@Id
 	@Column(name = "cod_categoria", nullable = false)
-	@SequenceGenerator(name = "seq", sequenceName = "seq_categoria", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+	@SequenceGenerator(name = "seq2", sequenceName = "seq_categoria", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq2")
 	private Integer codCategoria;
 	
 	@Column(name = "descricao", nullable = false)
