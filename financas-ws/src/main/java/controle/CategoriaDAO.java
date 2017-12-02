@@ -8,6 +8,7 @@ package controle;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import org.apache.logging.log4j.LogManager;
@@ -21,12 +22,6 @@ import uteis.Utilidades;
 import classes.Categoria;
 import classesRelatorios.MediaPorCategoria;
 
-/**
- *
- * @author Nelson Wilde
- * 
- *  Categoria
- */
 public class CategoriaDAO 
 {
 	private Logger logger = LogManager.getLogger(CategoriaDAO.class);
@@ -34,7 +29,7 @@ public class CategoriaDAO
     GenericDao<Categoria> dao = new GenericDao<Categoria>(Categoria.class);
     String hql = "";
     
-    public boolean  salvar(Categoria c)
+    public Categoria salvar(Categoria c) throws PersistenceException
     {
     	if(c.getCodCategoria() == 0)
     	{ 
@@ -57,7 +52,6 @@ public class CategoriaDAO
 		return dao.getObjeto(cod);
 	}
 
-	@SuppressWarnings("unchecked")
 	public ArrayList<Categoria> listar()
 	{
         ArrayList<Categoria> lista = new ArrayList<Categoria>();
@@ -73,7 +67,6 @@ public class CategoriaDAO
         return lista;
     }
 	
-	@SuppressWarnings("unchecked")
 	public ArrayList<Categoria> pesquisar(String palavra)
 	{
 		ArrayList<Categoria> lista = new ArrayList<Categoria>();

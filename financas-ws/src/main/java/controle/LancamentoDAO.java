@@ -31,7 +31,7 @@ public class LancamentoDAO
 
 	GenericDao<Lancamento> dao = new GenericDao<Lancamento>(Lancamento.class);
 
-	public boolean salvar(Lancamento c)
+	public Lancamento salvar(Lancamento c)
 	{
 		if (c.getCodLancamento() == 0)
 		{

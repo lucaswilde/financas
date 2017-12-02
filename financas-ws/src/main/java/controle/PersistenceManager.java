@@ -13,16 +13,12 @@ public class PersistenceManager {
 
 	private static final ThreadLocal<EntityManager> threadLocal = new ThreadLocal<EntityManager>();
 	private static EntityManagerFactory factory;
-	//private static Map<Object, Object> connectionProperties = new HashMap<Object, Object>();
 
 	/**
 	 * Cria uma entity manager factory única e o retorna em todas as demais chamadas
 	 */
 	public static EntityManagerFactory getFactory() {
 		if (factory == null || !factory.isOpen()) {
-			//factory = Persistence.createEntityManagerFactory("unit", connectionProperties);
-			
-			//factory = new HibernatePersistenceProvider().createEntityManagerFactory("financasPU", null);
 			factory = Persistence.createEntityManagerFactory("financasPU");
 		}
 		return factory;

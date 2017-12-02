@@ -2,6 +2,8 @@ package servico;
 
 import java.util.ArrayList;
 
+import javax.persistence.PersistenceException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,7 +15,7 @@ public class CategoriaService {
 	private Logger logger = LogManager.getLogger(CategoriaDAO.class);
 	private CategoriaDAO categoriaDAO = new CategoriaDAO();
     
-    public boolean  salvar(Categoria c)
+    public Categoria  salvar(Categoria c)
     {
     	return categoriaDAO.salvar(c);
     }    

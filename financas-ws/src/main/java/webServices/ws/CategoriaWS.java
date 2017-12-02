@@ -34,7 +34,6 @@ public class CategoriaWS {
 		if(categoria.getDescricao() == null || "".equals(categoria.getDescricao())) {
 			throw new ServiceExceptionSOAP("Missing Data", "Campo descricao deve ser informado.");
 		}
-		new CategoriaService().salvar(categoria);
-		return categoria;
+		return new CategoriaService().salvar(categoria);
 	}
 }

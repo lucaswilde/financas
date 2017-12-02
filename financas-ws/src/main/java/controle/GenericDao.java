@@ -5,9 +5,12 @@
 package controle;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import uteis.LogUtils;
 
 
 public class GenericDao<T> {
@@ -19,43 +22,39 @@ public class GenericDao<T> {
         this.classeObjeto = classeObjeto;
     }
 
-    //Gerencia o ciclo de vida da EntityManager
-    //Biblioteca utilizada ScopedEntityManager-1.0-r5.jar
-
-    //private EntityManager em = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
     private EntityManager em = PersistenceManager.getEntityManager();
 
-    public boolean inserir(T obj) {
-        try {
-            getEm().getTransaction().begin();
-            getEm().persist(obj);
-            getEm().getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-        	logger.error("************** Erro ao inserir objeto. ************** ", e);
-            return false;
-        }
-    }
+	public T inserir(T obj) throws PersistenceException {
+		try {
+			em.getTransaction().begin();
+			em.persist(obj);
+			em.getTransaction().commit();
+		}catch (PersistenceException e) {
+			logger.error(GenericDao.class.getName() + ".insert = " + e.getMessage(), e);
+			rollbackTransaction(em);
+			throw e;
+		}
+		return obj;
+	}
 
-    public boolean atualizar(T obj) {
-        try {
-            getEm().getTransaction().begin();
-            getEm().merge(obj);
-            getEm().getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-        	logger.error("************** Erro ao atualizar objeto. ************** ", e);
-        }
-        return false;
-    }
-    
-    
-    
+	public T atualizar(T obj) throws PersistenceException {
+		try {
+			em.getTransaction().begin();
+			em.merge(obj);
+			em.getTransaction().commit();
+		} catch (PersistenceException e) {
+			logger.error(GenericDao.class.getName() + ".insert = " + e.getMessage(), e);
+			rollbackTransaction(em);
+			throw e;
+		}
+		return obj;
+	}
+
     public boolean excluir(T obj) {
        try {
-            getEm().getTransaction().begin();
-            getEm().remove(obj);
-            getEm().getTransaction().commit();
+            em.getTransaction().begin();
+            em.remove(obj);
+            em.getTransaction().commit();
             return true;
         } catch (Exception e) {
         	logger.error("************** Erro ao excluir objeto. ************** ", e);
@@ -65,9 +64,9 @@ public class GenericDao<T> {
 
     public T getObjeto(int id) {
         try {
-            getEm().getTransaction().begin();
-            T a = (T) getEm().find(getClasseObjeto(),id);
-            getEm().getTransaction().commit();
+            em.getTransaction().begin();
+            T a = (T) em.find(getClasseObjeto(),id);
+            em.getTransaction().commit();
             return a;
         } catch (Exception e) {
         	logger.error("************** Erro ao carregar objeto. ************** ",	e);
@@ -75,6 +74,16 @@ public class GenericDao<T> {
         return null;
     }
 
+    public void rollbackTransaction(EntityManager em) throws PersistenceException{
+    	try {
+	    	if(em != null && em.getTransaction() != null) {
+	    		em.getTransaction().rollback();
+	    	}
+    	}catch (PersistenceException e) {
+			logger.error(LogUtils.formatMessage(GenericDao.class, "rollbackTransaction", e.getMessage()), e);
+			throw e;
+		}
+    }
     
     public Class getClasseObjeto() {
         return classeObjeto;
