@@ -79,7 +79,7 @@ public class CategoriaDAO
 		ArrayList<Categoria> lista = new ArrayList<Categoria>();
 		try
 		{
-			hql = "from Categoria where descricao like '%"+palavra+"%' order by descricao";
+			hql = "from Categoria where upper(descricao) like upper('%"+palavra+"%') order by descricao";
 
 			Query qry = dao.getEm().createQuery(hql);
 			

@@ -28,6 +28,16 @@ public class Categoria implements Serializable{
 	@Column(name = "descricao", nullable = false)
 	private String descricao;
 
+	public Categoria() {
+		super();
+	}
+	
+	public Categoria(Integer codCategoria, String descricao) {
+		super();
+		this.codCategoria = codCategoria;
+		this.descricao = descricao;
+	}
+
 	/**
 	 * @return the codCategoria
 	 */

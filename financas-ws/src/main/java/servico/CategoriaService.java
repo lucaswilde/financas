@@ -1,18 +1,12 @@
 package servico;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.joda.time.DateTime;
 
 import classes.Categoria;
-import classesRelatorios.MediaPorCategoria;
-import classesRelatorios.MesAno;
 import controle.CategoriaDAO;
-import controle.LancamentoDAO;
-import uteis.Datas;
 
 public class CategoriaService {
 
