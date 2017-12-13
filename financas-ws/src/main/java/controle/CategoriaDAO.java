@@ -6,21 +6,24 @@
 package controle;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.EntityResult;
+import javax.persistence.FieldResult;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import javax.persistence.SqlResultSetMapping;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Hibernate;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.transform.Transformers;
+import org.joda.time.DateTime;
 
-import uteis.Utilidades;
 import classes.Categoria;
 import classesRelatorios.MediaPorCategoria;
+import uteis.Utilidades;
 
 public class CategoriaDAO 
 {
@@ -95,8 +98,8 @@ public class CategoriaDAO
 	 * @param listaCategorias
 	 * @return
 	 */
-	/*	
-	public ArrayList<MediaPorCategoria> pesquisarMediaPorCategoria(Date dataInicio, Date dataFim, String tipo, ArrayList<Integer> listaCategorias)
+	// NAO FUNCIONA POR CAUSA DO FILTRO DE DATA
+	public ArrayList<MediaPorCategoria> pesquisarMediaPorCategoria(Date dataInicio, Date dataFim, String tipo, List<Integer> listaCategorias)
 	{
 		ArrayList<MediaPorCategoria> retorno = new ArrayList<MediaPorCategoria>();
         try
@@ -126,12 +129,13 @@ public class CategoriaDAO
             
 
             Session session = (Session) dao.getEm().getDelegate();
-            SQLQuery qry = session.createSQLQuery(sql.toString());
-            qry.addScalar("dsCategoria", Hibernate.STRING);
-            qry.addScalar("valor", Hibernate.DOUBLE);
+            Query qry = session.createNativeQuery(sql.toString(), "MediaPorCategoria");
             
-            qry.setResultTransformer(Transformers.aliasToBean(MediaPorCategoria.class));
-            retorno = (ArrayList<MediaPorCategoria>) qry.list();
+            //qry.addScalar("dsCategoria", Hibernate.STRING);
+            //qry.addScalar("valor", Hibernate.DOUBLE);
+            
+            //qry.setResultTransformer(Transformers.aliasToBean(MediaPorCategoria.class));
+            retorno = (ArrayList<MediaPorCategoria>) qry.getResultList();
             
         }
         catch (Exception e) 
@@ -141,5 +145,29 @@ public class CategoriaDAO
         return retorno;
 	}
 	
-	*/
+	public static void main(String[] args) {
+		List<Integer> listaCategorias = new ArrayList<Integer>();
+		listaCategorias.add(35);
+		listaCategorias.add(11);
+		
+		/*
+		DateTime dataInicio = new DateTime(2015, 1, 1, 0, 0, 0, 0);
+		DateTime dataFim = new DateTime(2017, 1, 1, 0, 0, 0, 0);
+
+		ArrayList<MediaPorCategoria> mediaPorCategoriaList = new CategoriaDAO().pesquisarMediaPorCategoria(dataInicio.toDate(), dataFim.toDate(), "S", listaCategorias);
+		*/
+		Calendar dataInicio = Calendar.getInstance();
+		dataInicio.set(2015, 1, 1);
+		
+		Calendar dataFim = Calendar.getInstance();
+		dataInicio.set(2017, 1, 1);
+
+		ArrayList<MediaPorCategoria> mediaPorCategoriaList = new CategoriaDAO().pesquisarMediaPorCategoria(dataInicio.getTime(), dataFim.getTime(), "S", listaCategorias);
+		
+		for(MediaPorCategoria mediaPorCategoria : mediaPorCategoriaList) {
+			System.out.println(mediaPorCategoria.getDsCategoria() + " : " + mediaPorCategoria.getValor());
+		}
+		
+	}
+	
 }

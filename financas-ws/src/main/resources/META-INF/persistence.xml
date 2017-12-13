@@ -5,6 +5,7 @@
     <class>classes.Lancamento</class>
     <class>classes.Categoria</class>
     <class>classes.Usuario</class>
+    <class>classesRelatorios.MediaPorCategoria</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.connection.username" value="postgres"/>

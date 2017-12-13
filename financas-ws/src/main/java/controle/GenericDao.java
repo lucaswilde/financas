@@ -30,7 +30,7 @@ public class GenericDao<T> {
 			em.persist(obj);
 			em.getTransaction().commit();
 		}catch (PersistenceException e) {
-			logger.error(GenericDao.class.getName() + ".insert = " + e.getMessage(), e);
+			logger.error(GenericDao.class.getName() + ".insert = " + e.getCause(), e);
 			rollbackTransaction(em);
 			throw e;
 		}
@@ -43,7 +43,7 @@ public class GenericDao<T> {
 			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (PersistenceException e) {
-			logger.error(GenericDao.class.getName() + ".insert = " + e.getMessage(), e);
+			logger.error(GenericDao.class.getName() + ".atualizar = " + e.getCause(), e);
 			rollbackTransaction(em);
 			throw e;
 		}
@@ -57,7 +57,8 @@ public class GenericDao<T> {
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-        	logger.error("************** Erro ao excluir objeto. ************** ", e);
+        	logger.error(GenericDao.class.getName() + ".excluir = " + e.getCause(), e);
+			rollbackTransaction(em);
         }
         return false;
     }
@@ -69,7 +70,8 @@ public class GenericDao<T> {
             em.getTransaction().commit();
             return a;
         } catch (Exception e) {
-        	logger.error("************** Erro ao carregar objeto. ************** ",	e);
+        	logger.error(GenericDao.class.getName() + ".getObjeto = " + e.getCause(), e);
+			rollbackTransaction(em);
         }
         return null;
     }

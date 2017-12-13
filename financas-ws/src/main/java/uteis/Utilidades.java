@@ -3,9 +3,9 @@ package uteis;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -154,7 +154,7 @@ public final class Utilidades {
 	 * @param lista
 	 * @return
 	 */
-	public static String concatCodigoToSql(ArrayList<Integer> lista){
+	public static String concatCodigoToSql(List<Integer> lista){
 		String cod = ""; 
 		if (lista != null && lista.size() != 0) {
         	for(Integer c : lista){
