@@ -1,20 +1,27 @@
 package com.financas.service;
 
 import java.util.ArrayList;
-
-import javax.persistence.PersistenceException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.financas.model.Categoria;
 import com.financas.repository.CategoriaDAO;
+import com.financas.repository.CategoriaRepository;
 
+@Service
 public class CategoriaService {
 
+	@Autowired
+	private CategoriaRepository categoriaRepository;
+
 	private Logger logger = LogManager.getLogger(CategoriaDAO.class);
-	private CategoriaDAO categoriaDAO = new CategoriaDAO();
+	private CategoriaDAO categoriaDAO = null;//new CategoriaDAO();
     
+	
     public Categoria  salvar(Categoria c)
     {
     	return categoriaDAO.salvar(c);
@@ -30,9 +37,10 @@ public class CategoriaService {
     	return categoriaDAO.procurar(cod);
 	}
 
-	public ArrayList<Categoria> listar()
+	public List<Categoria> listar()
 	{
-        return categoriaDAO.listar();
+        //return categoriaDAO.listar();
+		return (List<Categoria>) categoriaRepository.findAll();
     }
 	
 	public ArrayList<Categoria> pesquisar(String palavra)
