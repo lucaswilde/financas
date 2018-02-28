@@ -24,17 +24,20 @@ public class CategoriaService {
 	
     public Categoria  salvar(Categoria c)
     {
-    	return categoriaDAO.salvar(c);
+    	//return categoriaDAO.salvar(c);
+    	return categoriaRepository.save(c);
     }    
 
-    public boolean excluir(int cod)
+    public void excluir(Long cod)
     {
-    	return categoriaDAO.excluir(cod);
+    	//return categoriaDAO.excluir(cod);
+    	categoriaRepository.delete(cod);
 	}
     
-    public Categoria procurar(int cod)
+    public Categoria procurar(Long cod)
     {
-    	return categoriaDAO.procurar(cod);
+    	//return categoriaDAO.procurar(cod);
+    	return categoriaRepository.findOne(cod);
 	}
 
 	public List<Categoria> listar()
@@ -43,9 +46,10 @@ public class CategoriaService {
 		return (List<Categoria>) categoriaRepository.findAll();
     }
 	
-	public ArrayList<Categoria> pesquisar(String palavra)
+	public List<Categoria> pesquisar(String palavra)
 	{
-        return categoriaDAO.pesquisar(palavra);
+        //return categoriaDAO.pesquisar(palavra);
+		return (List<Categoria>) categoriaRepository.findByDescricao(palavra);
     }
 
 //	public ArrayList<MediaPorCategoria> gastoMensalPorCategoria(Date dataInicio, Date dataFim, String tipo

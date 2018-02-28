@@ -23,7 +23,7 @@ public class Categoria implements Serializable{
 	@Column(name = "cod_categoria", nullable = false)
 	@SequenceGenerator(name = "seq2", sequenceName = "seq_categoria", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq2")
-	private Integer codCategoria;
+	private Long codCategoria;
 	
 	@Column(name = "descricao", nullable = false)
 	private String descricao;
@@ -32,7 +32,7 @@ public class Categoria implements Serializable{
 		super();
 	}
 	
-	public Categoria(Integer codCategoria, String descricao) {
+	public Categoria(Long codCategoria, String descricao) {
 		super();
 		this.codCategoria = codCategoria;
 		this.descricao = descricao;
@@ -41,14 +41,14 @@ public class Categoria implements Serializable{
 	/**
 	 * @return the codCategoria
 	 */
-	public Integer getCodCategoria() {
+	public Long getCodCategoria() {
 		return codCategoria;
 	}
 
 	/**
 	 * @param codCategoria the codCategoria to set
 	 */
-	public void setCodCategoria(Integer codCategoria) {
+	public void setCodCategoria(Long codCategoria) {
 		this.codCategoria = codCategoria;
 	}
 
