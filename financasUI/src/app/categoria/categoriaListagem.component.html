@@ -14,9 +14,19 @@
         <th>Excluir</th>
     </tr>
     <tr *ngFor="let categoria of listaCategorias; let i = index">
-        <td>{{i + 1}}</td>
+        <td>{{categoria.codCategoria}}</td>
         <td>{{categoria.descricao}}</td>
-        <td>{{categoria.desabilitado}}</td>
+        <td>
+            <div *ngIf="categoria.desabilitado">
+                <i class="fa fa-check-circle"></i>
+                <i class="fas fa-check"></i>
+                <i class="far fa-circle"></i>
+            </div>
+            <!--
+            {{categoria.isDesabilitado ? 'desabilidato' : 'Habilitado'}}
+                {{categoria.desabilitado}}
+            -->
+        </td>
         <td></td>
         <td></td>
     </tr>
