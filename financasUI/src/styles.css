@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~font-awesome/css/font-awesome.css';
+
+/*@import '~font-awesome/css/font-awesome.css';*/
+
+@import '~@fortawesome/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome.css';
+@import '~@fortawesome/fontawesome-free-5.0.8/web-fonts-with-css/css/fa-solid.css';
+@import '~@fortawesome/fontawesome-free-5.0.8/web-fonts-with-css/css/fa-regular.css';
+@import '~@fortawesome/fontawesome-free-5.0.8/web-fonts-with-css/css/fa-brands.css';
