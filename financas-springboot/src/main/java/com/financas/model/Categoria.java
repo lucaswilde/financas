@@ -27,6 +27,9 @@ public class Categoria implements Serializable{
 	
 	@Column(name = "descricao", nullable = false)
 	private String descricao;
+	
+	@Column(name = "desabilitado", nullable = true)
+	private Boolean desabilitado;
 
 	public Categoria() {
 		super();
@@ -64,6 +67,14 @@ public class Categoria implements Serializable{
 	 */
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Boolean getDesabilitado() {
+		return desabilitado;
+	}
+
+	public void setDesabilitado(Boolean desabilitado) {
+		this.desabilitado = desabilitado;
 	}
 
 	@Override

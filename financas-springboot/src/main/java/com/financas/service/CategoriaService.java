@@ -49,7 +49,7 @@ public class CategoriaService {
 	public List<Categoria> pesquisar(String palavra)
 	{
         //return categoriaDAO.pesquisar(palavra);
-		return (List<Categoria>) categoriaRepository.findByDescricao(palavra);
+		return (List<Categoria>) categoriaRepository.findByDescricaoLike("%"+palavra+"%");
     }
 
 //	public ArrayList<MediaPorCategoria> gastoMensalPorCategoria(Date dataInicio, Date dataFim, String tipo

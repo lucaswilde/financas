@@ -21,8 +21,8 @@ public class Application implements CommandLineRunner{
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		System.out.println("Testando acesso ao banco com metodo main:");
-		System.out.println("--------> Todas as categorias: " + categoriaService.listar().size());
+//		System.out.println("Testando acesso ao banco com metodo main:");
+//		System.out.println("--------> Todas as categorias: " + categoriaService.listar().size());
 		
 	}
 }
