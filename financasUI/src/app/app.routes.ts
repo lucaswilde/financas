@@ -9,9 +9,10 @@ const appRoutes: Routes = [
     // http://localhost:4200/categoria
     , { path: 'categoria', component: CategoriaListagemComponent }
     , { path: 'cadastroCategoria', component: CategoriaCadastroComponent}
+    // :id - curinga
+    , { path: 'cadastroCategoria/:id', component: CategoriaCadastroComponent }
 
-    //:id - curinga
-    //{ path: 'cadastro/:id', component: CadastroComponent },
+
     // redireciona para o padrão caso não encontre o path, ex.: http://localhost:3000/abcde
     , { path: '**', redirectTo: ''}
 ];

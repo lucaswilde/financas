@@ -29,15 +29,15 @@ export class CategoriaService{
 
     cadastra(foto: CategoriaComponent): Observable<MensagemCadastro> {
         let saveUrl = this.url + "/save";
-        if(foto.codCategoria){
+        /*if(foto.codCategoria){
             // atualiza
             return this.http.put(saveUrl, JSON.stringify(foto), {headers: this.headers})
             .map(() => new MensagemCadastro('Foto alterada com sucesso', false));
         } else{
-            // insere
+            // insere*/
             return this.http.post(saveUrl, JSON.stringify(foto), {headers: this.headers})
             .map(() => new MensagemCadastro('Foto incluída com sucesso', true));
-        }
+        //}
     }
 
     remove(foto: CategoriaComponent): Observable<Response>{

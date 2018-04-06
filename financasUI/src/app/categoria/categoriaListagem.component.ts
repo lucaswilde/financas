@@ -18,6 +18,20 @@ export class CategoriaListagemComponent{
     constructor(categoriaService: CategoriaService){
         this.categoriaService = categoriaService;
 
+        this.listar();
+    }
+
+    remove(categoria: CategoriaComponent) {
+        if(confirm('Excluir?')) {
+            this.categoriaService.remove(categoria).subscribe(
+                (sucesso) => {
+                    this.listar()
+                }, error => alert('Erro ao excluir ' + error)
+            );
+        }
+    }
+
+    listar() {
         this.categoriaService.listar().subscribe(
             (listaCategorias) => {
                 console.log(listaCategorias);

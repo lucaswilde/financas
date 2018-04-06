@@ -1,10 +1,9 @@
-<h1>Cadastro de Categoria</h1>
-
 <div class="container">
+    <h4>Cadastro de Categoria</h4>
     <form [formGroup]="meuForm" (submit)="cadastrar($event)" class="row">
 
         <label>Descrição</label>
-        <input name="descricao" formControlName="descricao" [(ngModel)]="categoria.descricao" class="form-control" autocomplete="off">
+        <input name="descricao" formControlName="descricao" [(ngModel)]="categoria.descricao" class="form-control" autocomplete="off" #input (input)="input.value = $event.target.value.toUpperCase()">
 
         <div *ngIf="!meuForm.controls.descricao.valid">
             <span *ngIf="meuForm.controls.descricao.errors.required" class="form-control alert-danger">
@@ -12,6 +11,7 @@
             </span>
         </div>
 
+        <br>
 
         <botao nome="Salvar" tipo="submit" estilo="btn-primary" [desabilitado]="!meuForm.valid">
         </botao>

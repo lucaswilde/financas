@@ -30,7 +30,7 @@ export class CategoriaCadastroComponent {
                 console.log('id: ' + id);
                 if(id){
                     this.service.buscarPorId(id).subscribe(
-                        foto => this.categoria = foto,
+                        categoria => this.categoria = categoria,
                         erro => console.log(erro)
                     );
                 }
@@ -45,7 +45,7 @@ export class CategoriaCadastroComponent {
     cadastrar(event: Event){
         // previne o compormento default do javascript que é submeter o formulario, isso evitará que a página seja recarregada
         event.preventDefault();
-        console.log('Categoria a ser salva: ' + this.categoria);
+        console.log('Categoria a ser salva: ' + JSON.stringify(this.categoria));
 
         this.service.cadastra(this.categoria).subscribe(res => {
             this.categoria = new CategoriaComponent();
