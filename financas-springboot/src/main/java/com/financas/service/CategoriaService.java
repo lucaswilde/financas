@@ -1,6 +1,5 @@
 package com.financas.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -43,13 +42,13 @@ public class CategoriaService {
 	public List<Categoria> listar()
 	{
         //return categoriaDAO.listar();
-		return (List<Categoria>) categoriaRepository.findAll();
+		return (List<Categoria>) categoriaRepository.findAllByOrderByDescricaoAsc();
     }
 	
 	public List<Categoria> pesquisar(String palavra)
 	{
         //return categoriaDAO.pesquisar(palavra);
-		return (List<Categoria>) categoriaRepository.findByDescricaoLike("%"+palavra+"%");
+		return (List<Categoria>) categoriaRepository.findByDescricaoLikeOrderByDescricaoAsc("%"+palavra+"%");
     }
 
 //	public ArrayList<MediaPorCategoria> gastoMensalPorCategoria(Date dataInicio, Date dataFim, String tipo

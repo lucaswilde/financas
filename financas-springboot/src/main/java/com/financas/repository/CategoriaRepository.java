@@ -14,5 +14,8 @@ public interface CategoriaRepository extends CrudRepository<Categoria, Long> {
 	
 	//List<Categoria> findByDescricao(String descricao);
 	
-	List<Categoria> findByDescricaoLike(String descricao);
+	List<Categoria> findByDescricaoLikeOrderByDescricaoAsc(String descricao);
+	
+	List<Categoria> findAllByOrderByDescricaoAsc();
+	
 }
