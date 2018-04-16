@@ -11,6 +11,8 @@
             </span>
         </div>
 
+        <input name="desabilitado" formControlName="desabilitado" [(ngModel)]="categoria.desabilitado" type="checkbox" class="filled-in" autocomplete="off">
+        <label>Desabilitado</label>
         <br>
 
         <botao nome="Salvar" tipo="submit" estilo="btn-primary" [desabilitado]="!meuForm.valid">

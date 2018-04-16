@@ -39,6 +39,7 @@ export class CategoriaCadastroComponent {
 
         this.meuForm = fb.group({
             descricao: ['', Validators.required]
+            , desabilitado: ['', Validators.nullValidator]
         });
     }
 

@@ -19,7 +19,7 @@
         <tr>
             <th>#</th>
             <th>Descrição</th>
-            <th>Habilitado</th>
+            <th>Desabilitado</th>
             <th>Alterar</th>
             <th>Excluir</th>
         </tr>
@@ -30,16 +30,11 @@
                 <div *ngIf="categoria.desabilitado; else habilitado">
                     <!--<i class="fas fa-check"></i>
             <i class="fas fa-minus-circle"></i>-->
-                    <i class="far fa-circle"></i>
+                    <i class="fa fa-check-circle"></i>
                 </div>
                 <ng-template #habilitado>
-                    <i class="fa fa-check-circle"></i>
-
+                    <i class="far fa-circle"></i>
                 </ng-template>
-                <!--
-        {{categoria.isDesabilitado ? 'desabilidato' : 'Habilitado'}}
-            {{categoria.desabilitado}}
-        -->
             </td>
             <td>
                 <i class="fas fa-edit" [routerLink]="['/cadastroCategoria', categoria.codCategoria]" title="Editar"></i>
