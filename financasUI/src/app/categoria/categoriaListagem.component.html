@@ -1,23 +1,26 @@
 <div class="container">
     <h3>Listagem de Categorias</h3>
     <!--
-<span class="input-group-btn">
-    <a [routerLink]="['/cadastroCategoria']" class="btn btn-primary">
-        Nova categoria
-    </a>
-</span>
--->
+        <span class="input-group-btn">
+            <a [routerLink]="['/cadastroCategoria']" class="btn btn-primary">
+                Nova categoria
+            </a>
+        </span>
+    -->
 
     <span class="pull-left">
         <i class="fas fa-plus-circle" [routerLink]="['/cadastroCategoria']" title="Nova Categoria"></i>
     </span>
 
+    <span class="pull-right">
+        Total: {{listaCategorias.length}}
+    </span>
 
 
     <!--<table class="table table-striped table-hover">-->
     <table class="table table-hover">
         <tr>
-            <th>#</th>
+            <th>Cód</th>
             <th>Descrição</th>
             <th>Desabilitado</th>
             <th>Alterar</th>

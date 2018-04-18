@@ -12,7 +12,6 @@ import { CategoriaComponent } from './categoria.component';
 export class CategoriaListagemComponent{
 
     categoriaService: CategoriaService;
-    //categoria: CategoriaComponent;
     listaCategorias: CategoriaComponent[] = [];
 
     constructor(categoriaService: CategoriaService){
