@@ -15,12 +15,4 @@ export class CategoriaComponent{
     constructor() {
 
     }
-
-    get isDesabilitado(): boolean {
-        if (this.desabilitado == null || this.desabilitado !== false){
-            return false;
-        }
-        return true;
-    }
-
 }

@@ -2,9 +2,10 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CategoriaComponent } from './categoria.component';
+import { MensagemCadastro } from './../util/mensagem.cadastro';
 
 @Injectable() // necessario para o construtor conseguir injetar o Http
-export class CategoriaService{
+export class CategoriaService {
 
     http: Http;
     headers: Headers;
@@ -46,22 +47,5 @@ export class CategoriaService{
 
     buscarPorId(id:string): Observable<CategoriaComponent>{
         return this.http.get(this.url + "/" + id).map(res => res.json());
-    }
-}
-
-export class MensagemCadastro{
-
-    // por debaixo dos panos cria as propriedades `_memsagem` e `_inclusao` como privados
-    constructor(private _mensagem: string, private _inclusao: boolean) {
-        this._mensagem = _mensagem;
-        this._inclusao = _inclusao;
-    }
-
-    public get mensagem(): string {
-        return this._mensagem;
-    }
-
-    public get inclusao(): boolean {
-        return this._inclusao;
     }
 }

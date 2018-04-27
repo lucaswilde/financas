@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routes';
 import { CategoriaListagemComponent } from './categoria/categoriaListagem.component';
 import { CategoriaCadastroComponent } from './categoria/categoriaCadastro.component';
+import { LancamentoListagemComponent } from './lancamento/lancamentoListagem.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { BotaoModule } from './botao/botao.module';
 
@@ -17,7 +18,7 @@ import { BotaoModule } from './botao/botao.module';
   // quando o módulo da aplicação for carregado, precisamos indicar qual será o primeiro componente carregado, 
   // nesse caso queremos que seja o AppComponent tanto para o declaration quanto o bootstrap
   declarations: [
-    AppComponent, CategoriaListagemComponent, CategoriaCadastroComponent, WelcomeComponent
+    AppComponent, CategoriaListagemComponent, CategoriaCadastroComponent, WelcomeComponent, LancamentoListagemComponent
   ],
   /*Veja que nossa classe AppModule possui o decorator NgModule e que neste decorator importarmos o BrowserModule, 
     através da propriedade imports. Isso indica que um módulo anotado com ngModule pode importar outros módulos também anotados com ngModule. 
