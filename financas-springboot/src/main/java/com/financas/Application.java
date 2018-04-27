@@ -16,8 +16,8 @@ public class Application implements CommandLineRunner{
 		SpringApplication.run(Application.class, args);
 	}
 	
-	@Autowired
-	private CategoriaService categoriaService;
+//	@Autowired
+//	private CategoriaService categoriaService;
 
 	@Override
 	public void run(String... arg0) throws Exception {
