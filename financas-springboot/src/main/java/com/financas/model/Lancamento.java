@@ -48,6 +48,9 @@ public class Lancamento implements Cloneable{
 	@Transient
 	private Integer qtdParcelas;
 	
+	@Transient
+	public static final String ATTRIBUTE_DATA = "data";
+	
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
