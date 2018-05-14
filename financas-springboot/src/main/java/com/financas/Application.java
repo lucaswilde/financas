@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.financas.model.Lancamento;
+import com.financas.model.LancamentoRequest;
+import com.financas.model.LancamentoRequest.LancamentoRequestBuilder;
 import com.financas.service.CategoriaService;
 import com.financas.service.LancamentoService;
 
@@ -31,7 +33,10 @@ public class Application implements CommandLineRunner{
 //		System.out.println("Testando acesso ao banco com metodo main:");
 //		System.out.println("--------> Todas as categorias: " + categoriaService.listar().size());
 		
-		List<Lancamento> list = lancamentoService.listar(2017, 2);
+		// LancamentoRequest lancamentoRequest = new LancamentoRequest.LancamentoRequestBuilder().setMonth(1).setYear(2018).build();
+		LancamentoRequest lancamentoRequest = new LancamentoRequest.LancamentoRequestBuilder().setMonth(1).build();
+		
+		List<Lancamento> list = lancamentoService.listar(lancamentoRequest);
 		System.out.println("--------> Lancamentos por ano: " + list.size());
 		for(Lancamento lancamento : list) {
 			System.out.println(lancamento.getData());

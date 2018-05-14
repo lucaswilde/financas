@@ -7,16 +7,24 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.domain.Specifications;
+import org.springframework.stereotype.Component;
 
 import com.financas.model.Lancamento;
+import com.financas.model.LancamentoRequest;
 
-public class LancamentoSpecifications {
+@Component
+public class LancamentoSpecifications extends BaseSpecification<Lancamento, LancamentoRequest>{
 	public static Specification<Lancamento> hasYear(Integer yearParam){
 		return new Specification<Lancamento>() {
 			@Override
 			public Predicate toPredicate(Root<Lancamento> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Expression<Integer> year = cb.function("year", Integer.class, root.get(Lancamento.ATTRIBUTE_DATA));
-				return cb.equal(year, yearParam);
+				if(yearParam == null) {
+					return null;
+				}else {
+					Expression<Integer> year = cb.function("year", Integer.class, root.get(Lancamento.ATTRIBUTE_DATA));
+					return cb.equal(year, yearParam);
+				}
 			}
 		};
 	}
@@ -40,4 +48,36 @@ public class LancamentoSpecifications {
 			}
 		};
 	}
+	
+	/*
+	@Override
+	public Specification<Lancamento> getFilter(LancamentoRequest request) {
+		return (root, query, cb)->{
+			return Specifications.where(hasMonth(request.getMonth()))
+					.and(hasYear(request.getYear()))
+					.toPredicate(root, query, cb);
+		};
+	}
+	*/
+	
+	public Specification<Lancamento> getFilter(LancamentoRequest request) {
+		return (root, query, cb)->{
+			Specification<Lancamento> specification = null;
+			
+			if(request.getYear() != null) {
+				specification = Specifications.where(hasYear(request.getYear()));
+			}
+			
+			if(request.getMonth() != null) {
+				if(specification == null) {
+					specification = Specifications.where(hasMonth(request.getMonth()));
+				}else {
+					specification = Specifications.where(specification).and(hasMonth(request.getMonth()));
+				}
+			}
+			
+			return specification.toPredicate(root, query, cb);
+		};
+	}
+	
 }

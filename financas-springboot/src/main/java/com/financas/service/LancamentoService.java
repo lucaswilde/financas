@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
 import com.financas.model.Lancamento;
+import com.financas.model.LancamentoRequest;
 import com.financas.repository.LancamentoRepository;
 import com.financas.repository.LancamentoSpecifications;
 
@@ -15,6 +16,8 @@ public class LancamentoService {
 
 	@Autowired
 	private LancamentoRepository lancamentoRepository;
+	@Autowired
+	private LancamentoSpecifications lancamentoSpecifications;
 
     public Lancamento  salvar(Lancamento c)
     {
@@ -36,9 +39,9 @@ public class LancamentoService {
 		return (List<Lancamento>) lancamentoRepository.findAllByOrderByDataDesc();
     }
 	
-	public List<Lancamento> listar(Integer year, Integer month)
+	public List<Lancamento> listar(LancamentoRequest request)
 	{
-		return (List<Lancamento>) lancamentoRepository.findAll(LancamentoSpecifications.hasYear(year));
+		return (List<Lancamento>) lancamentoRepository.findAll(lancamentoSpecifications.getFilter(request));
 		
 //		return (List<Lancamento>) lancamentoRepository.findAll(Specifications.where(LancamentoSpecifications.hasYear(year)).where(LancamentoSpecifications.hasMonth(month)));
 		
