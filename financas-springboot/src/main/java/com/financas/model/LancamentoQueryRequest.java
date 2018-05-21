@@ -2,23 +2,23 @@ package com.financas.model;
 
 import java.util.Date;
 
-public class LancamentoRequest {
+public class LancamentoQueryRequest {
 	private Integer year;
 	private Integer month;
 	private Date date;
 	
-	public LancamentoRequest() {
+	public LancamentoQueryRequest() {
 		super();
 	}
 	
-	public LancamentoRequest(Integer year, Integer month, Date date) {
+	public LancamentoQueryRequest(Integer year, Integer month, Date date) {
 		super();
 		this.year = year;
 		this.month = month;
 		this.date = date;
 	}
 	
-	public LancamentoRequest(LancamentoRequestBuilder builder) {
+	public LancamentoQueryRequest(LancamentoQueryRequestBuilder builder) {
 		super();
 		this.year = builder.year;
 		this.month = builder.month;
@@ -44,28 +44,28 @@ public class LancamentoRequest {
 		this.date = date;
 	}
 	
-	public static class LancamentoRequestBuilder {
+	public static class LancamentoQueryRequestBuilder {
 		protected Integer year;
 		protected Integer month;
 		protected Date date;
 		
-		public LancamentoRequestBuilder setYear(Integer year) {
+		public LancamentoQueryRequestBuilder setYear(Integer year) {
 			this.year = year;
 			return this;
 		}
 		
-		public LancamentoRequestBuilder setMonth(Integer month) {
+		public LancamentoQueryRequestBuilder setMonth(Integer month) {
 			this.month = month;
 			return this;
 		}
 		
-		public LancamentoRequestBuilder setDate(Date date) {
+		public LancamentoQueryRequestBuilder setDate(Date date) {
 			this.date = date;
 			return this;
 		}
 		
-		public LancamentoRequest build() {
-			return new LancamentoRequest(this);
+		public LancamentoQueryRequest build() {
+			return new LancamentoQueryRequest(this);
 		}
 	}
 }

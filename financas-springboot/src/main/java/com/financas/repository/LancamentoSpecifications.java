@@ -11,73 +11,63 @@ import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Component;
 
 import com.financas.model.Lancamento;
-import com.financas.model.LancamentoRequest;
+import com.financas.model.LancamentoQueryRequest;
 
 @Component
-public class LancamentoSpecifications extends BaseSpecification<Lancamento, LancamentoRequest>{
-	public static Specification<Lancamento> hasYear(Integer yearParam){
+public class LancamentoSpecifications extends BaseSpecification<Lancamento, LancamentoQueryRequest> {
+
+	public static Specification<Lancamento> hasYear(Integer yearParam) {
 		return new Specification<Lancamento>() {
 			@Override
-			public Predicate toPredicate(Root<Lancamento> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				if(yearParam == null) {
+			public Predicate toPredicate(Root<Lancamento> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+				if (yearParam == null) {
 					return null;
-				}else {
-					Expression<Integer> year = cb.function("year", Integer.class, root.get(Lancamento.ATTRIBUTE_DATA));
-					return cb.equal(year, yearParam);
+				} else {
+					Expression<Integer> year = criteriaBuilder.function("year", Integer.class, root.get(Lancamento.ATTRIBUTE_DATA));
+					return criteriaBuilder.equal(year, yearParam);
 				}
 			}
 		};
 	}
-	
-	public static Specification<Lancamento> hasMonth(Integer monthParam){
+
+	public static Specification<Lancamento> hasMonth(Integer monthParam) {
 		return new Specification<Lancamento>() {
 			@Override
-			public Predicate toPredicate(Root<Lancamento> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Expression<Integer> month = cb.function("month", Integer.class, root.get(Lancamento.ATTRIBUTE_DATA));
-				return cb.equal(month, monthParam);
+			public Predicate toPredicate(Root<Lancamento> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+				Expression<Integer> month = criteriaBuilder.function("month", Integer.class, root.get(Lancamento.ATTRIBUTE_DATA));
+				return criteriaBuilder.equal(month, monthParam);
 			}
 		};
 	}
-	
-	public static Specification<Lancamento> hasYearMonth(Integer yearParam, Integer monthParam){
+
+	public static Specification<Lancamento> hasYearMonth(Integer yearParam, Integer monthParam) {
 		return new Specification<Lancamento>() {
 			@Override
-			public Predicate toPredicate(Root<Lancamento> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Expression<Integer> month = cb.function("month", Integer.class, root.get(Lancamento.ATTRIBUTE_DATA));
-				return cb.equal(month, monthParam);
+			public Predicate toPredicate(Root<Lancamento> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+				Expression<Integer> month = criteriaBuilder.function("month", Integer.class, root.get(Lancamento.ATTRIBUTE_DATA));
+				return criteriaBuilder.equal(month, monthParam);
 			}
 		};
 	}
-	
-	/*
-	@Override
-	public Specification<Lancamento> getFilter(LancamentoRequest request) {
-		return (root, query, cb)->{
-			return Specifications.where(hasMonth(request.getMonth()))
-					.and(hasYear(request.getYear()))
-					.toPredicate(root, query, cb);
-		};
-	}
-	*/
-	
-	public Specification<Lancamento> getFilter(LancamentoRequest request) {
-		return (root, query, cb)->{
+
+	public Specification<Lancamento> getFilter(LancamentoQueryRequest request) {
+		return (root, query, criteriaBuilder) -> {
 			Specification<Lancamento> specification = null;
-			
-			if(request.getYear() != null) {
+
+			if (request.getYear() != null) {
 				specification = Specifications.where(hasYear(request.getYear()));
 			}
-			
-			if(request.getMonth() != null) {
-				if(specification == null) {
+
+			if (request.getMonth() != null) {
+				if (specification == null) {
 					specification = Specifications.where(hasMonth(request.getMonth()));
-				}else {
+				} else {
 					specification = Specifications.where(specification).and(hasMonth(request.getMonth()));
 				}
 			}
-			
-			return specification.toPredicate(root, query, cb);
+
+			return specification.toPredicate(root, query, criteriaBuilder);
 		};
 	}
-	
+
 }
