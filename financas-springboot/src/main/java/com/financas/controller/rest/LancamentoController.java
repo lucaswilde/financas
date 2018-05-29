@@ -45,7 +45,7 @@ public class LancamentoController {
 
 	@GetMapping(path = "/findAllBy", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Lancamento>> findAll(@RequestParam String lancamentoRequest) throws JsonParseException, JsonMappingException, IOException {
-		System.out.println("LancamentoController.findAllBy()");
+		System.out.println("LancamentoController.findAllBy() lancamentoRequest = [" + lancamentoRequest + "]");
 		LancamentoQueryRequest lancamentoQueryRequest = new ObjectMapper().readValue(lancamentoRequest, LancamentoQueryRequest.class);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(lancamentoService.listar(lancamentoQueryRequest));

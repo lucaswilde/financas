@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { LancamentoService } from './lancamento.service';
 import { Lancamento } from './lancamento';
+import { LancamentoQueryRequest } from './lancamento.query.request';
 
 @Component({
     moduleId: module.id,
@@ -15,7 +16,7 @@ export class LancamentoListagemComponent {
     listaLancamentos: Lancamento[] = [];
     mesSelectedValue: number;
     meses = [
-        { value: 0, viewValue: 'Nenhum' }
+        { value: 0, viewValue: 'Todos' }
         , {value: 1, viewValue: '1 - Janeiro'}
         , { value: 2, viewValue: '2 - Fevereiro' }
         , { value: 3, viewValue: '3 - Março' }
@@ -29,10 +30,16 @@ export class LancamentoListagemComponent {
         , { value: 11, viewValue: '11 - Novembro' }
         , { value: 12, viewValue: '12 - Dezembro' }
     ];
+    lancamentoQueryRequest: LancamentoQueryRequest;
 
     constructor(lancamentoService: LancamentoService){
         this.lancamentoService = lancamentoService;
-        this.mesSelectedValue = 2;
+        // this.mesSelectedValue = 2;
+        this.lancamentoQueryRequest = new LancamentoQueryRequest();
+
+        let currentDate = new Date();
+        this.lancamentoQueryRequest.month = currentDate.getMonth();
+        this.lancamentoQueryRequest.year = currentDate.getFullYear();
         this.listar();
     }
 
@@ -47,7 +54,7 @@ export class LancamentoListagemComponent {
     }
 
     listar() {
-        this.lancamentoService.listar().subscribe(
+        this.lancamentoService.listar(this.lancamentoQueryRequest).subscribe(
             (listaLancamentos) => {
                 console.log(listaLancamentos);
                 this.listaLancamentos = listaLancamentos;

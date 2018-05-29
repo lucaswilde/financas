@@ -6,11 +6,15 @@
     </span>
 
     <span>
-        <select [id]="mes" [(ngModel)]="abobora" (change)="listar()">
+        <select [id]="mes" [(ngModel)]="lancamentoQueryRequest.month" (change)="listar()">
             <option  *ngFor="let mes of meses" [value]="mes.value">
                 {{mes.viewValue}}
             </option>
         </select>
+    </span>
+
+    <span>
+        <input [(ngModel)]="lancamentoQueryRequest.year" (change)="listar()">
     </span>
 
     <span class="pull-right">

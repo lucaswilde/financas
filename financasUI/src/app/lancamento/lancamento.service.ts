@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Lancamento } from './lancamento';
 import { MensagemCadastro } from './../util/mensagem.cadastro';
 import { Constantes } from '../util/constantes';
+import { LancamentoQueryRequest } from './lancamento.query.request';
 
 @Injectable() // necessario para o construtor conseguir injetar o Http
 export class LancamentoService {
@@ -19,12 +20,14 @@ export class LancamentoService {
         //this.headers.append('Access-Control-Allow-Origin', '*');
     }
 
-    listar(): Observable<Lancamento[]> {
+    listar(lancamentoQueryRequest: LancamentoQueryRequest): Observable<Lancamento[]> {
         /* node js
         return this.http.get(this.url)
             .map(res => res.json().result);
             */
-        return this.http.get(this.url)
+        const listarUrl = this.url + '/findAllBy?lancamentoRequest=' + encodeURIComponent(JSON.stringify(lancamentoQueryRequest));
+        console.log('listarUrl = ' + listarUrl);
+        return this.http.get(listarUrl)
             .map(res => res.json());
     }
 
