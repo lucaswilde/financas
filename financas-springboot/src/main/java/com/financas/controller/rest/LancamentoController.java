@@ -25,7 +25,7 @@ import com.financas.service.LancamentoService;
 
 @RestController
 @RequestMapping("/v1/lancamentos")
-@CrossOrigin(origins = "*") // ou poderia ser (angular ui) http://localhost:4200, CrossOrigin='Access-Control-Allow-Origin'
+@CrossOrigin(origins = "*") // ou poderia ser http://localhost:4200 (angular ui), CrossOrigin='Access-Control-Allow-Origin'
 public class LancamentoController {
 
 	// boas praticas

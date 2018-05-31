@@ -40,16 +40,6 @@ public class LancamentoSpecifications extends BaseSpecification<Lancamento, Lanc
 		};
 	}
 
-	public static Specification<Lancamento> hasYearMonth(Integer yearParam, Integer monthParam) {
-		return new Specification<Lancamento>() {
-			@Override
-			public Predicate toPredicate(Root<Lancamento> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-				Expression<Integer> month = criteriaBuilder.function("month", Integer.class, root.get(Lancamento.ATTRIBUTE_DATA));
-				return criteriaBuilder.equal(month, monthParam);
-			}
-		};
-	}
-
 	public Specification<Lancamento> getFilter(LancamentoQueryRequest request) {
 		return (root, query, criteriaBuilder) -> {
 			Specification<Lancamento> specification = null;
