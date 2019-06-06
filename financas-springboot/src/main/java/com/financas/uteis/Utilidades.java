@@ -129,24 +129,6 @@ public final class Utilidades {
 		}
 	}
 	
-	public static byte[] getBytesFromBase64(String base64) {
-		byte[] bytes;
-		try {
-			bytes = new sun.misc.BASE64Decoder().decodeBuffer(base64);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		} 
-
-		return bytes;
-	}
-	
-	public static String getBase64FromBytes(byte[] bytes) {
-		String base64;
-		base64 = new sun.misc.BASE64Encoder().encode(bytes); 
-
-		return base64;
-	}
 	
 	/**
 	 * Contatena numeros separando cada um com uma virgula

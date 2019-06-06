@@ -27,10 +27,16 @@ public class CategoriaController {
 
 	@Autowired
 	private CategoriaService categoriaService;
+	
+	private Integer teste = 0;
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Categoria>> findAll() {
 		System.out.println("CategoriaController.findAll()");
+		
+		teste++;
+		
+		System.out.println("teste " + teste);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(categoriaService.listar());
 	}
@@ -48,7 +54,7 @@ public class CategoriaController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Categoria> save(@RequestBody Categoria categoria) {
-
+		
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaService.salvar(categoria));
 	}
 

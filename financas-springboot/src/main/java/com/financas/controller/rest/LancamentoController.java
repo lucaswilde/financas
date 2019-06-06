@@ -1,6 +1,7 @@
 package com.financas.controller.rest;
 
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +69,13 @@ public class LancamentoController {
 		System.out.println("LancamentoController.delete codLancamento: " + codLancamento);
 		lancamentoService.excluir(codLancamento);
 		return ResponseEntity.status(HttpStatus.OK).build();
+	}
+	
+	@GetMapping(path = "/heartbeat", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> heartbeat() throws JsonParseException, JsonMappingException, IOException {
+		System.out.println("LancamentoController.heartbeat");
+		String retorno = LocalTime.now().toString();
+		
+		return ResponseEntity.status(HttpStatus.OK).body(retorno);
 	}
 }
